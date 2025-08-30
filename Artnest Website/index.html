@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artnest Interior Designs - Transform Your Space</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #f5f5f6;
+      color: #28283c;
+      line-height: 1.65;
+    }
+    .navbar {
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(44, 62, 80, 0.11);
+      position: fixed;
+      top: 0; left: 0;
+      z-index: 100;
+      transition: background 0.2s;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 2rem;
+    }
+    .nav-logo h2 {
+      font-size: 2.2rem;
+      color: #6c63ff;
+      font-weight: 700;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+    .nav-item {
+      margin-left: 2rem;
+    }
+    .nav-link {
+      color: #333;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 1.05rem;
+      transition: color 0.2s;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: #6c63ff;
+    }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .nav-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background: #6c63ff;
+      margin: 3px 0;
+      border-radius: 3px;
+    }
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(122deg, #eaeafc 62%, #a7acf7 100%);
+      min-height: 92vh;
+      padding-top: 80px;
+    }
+    .hero-content {
+      flex: 1.2;
+      padding: 4rem 2rem 4rem 5%;
+    }
+    .hero-title {
+      font-size: 2.7rem;
+      font-weight: 700;
+      color: #28283c;
+      margin-bottom: 1.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.27rem;
+      color: #564fd2;
+      margin-bottom: 2rem;
+    }
+    .hero-buttons .btn {
+      margin-right: 1.2rem;
+    }
+    .hero-image {
+      flex: 1;
+      padding: 3rem 2rem 3rem 0;
+    }
+    .hero-image img {
+      width: 480px;
+      max-width: 100%;
+      border-radius: 2.2rem 0 2.2rem 2.2rem;
+      box-shadow: 0 12px 32px 0 rgba(0,0,0,0.12);
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 2.3rem;
+      font-size: 1.08rem;
+      border-radius: 3rem;
+      text-decoration: none;
+      background: #6c63ff;
+      color: #fff;
+      font-weight: 600;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: #6c63ff;
+      border: 2px solid #6c63ff;
+    }
+    .btn-secondary:hover {
+      background: #6c63ff;
+      color: #fff;
+    }
+    .about, .services, .portfolio, .contact {
+      padding: 5rem 2rem;
+      background: #fff;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .section-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: #564fd2;
+    }
+    .section-subtitle {
+      color: #6868a3;
+      font-size: 1.18rem;
+    }
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2.5rem;
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h3 {
+      font-size: 1.4rem;
+      margin-bottom: .9rem;
+      color: #28283c;
+    }
+    .about-text p {
+      color: #555570;
+      margin-bottom: 2rem;
+    }
+    .about-stats {
+      display: flex;
+      gap: 2.9rem;
+    }
+    .stat-item h4 {
+      font-size: 1.9rem;
+      color: #6c63ff;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .stat-item p {
+      color: #333;
+      text-align: center;
+    }
+    .about-image {
+      flex: 1.1;
+    }
+    .about-image img {
+      width: 410px;
+      max-width: 100%;
+      border-radius: 1.6rem 1.6rem 0 1.6rem;
+      box-shadow: 0 8px 24px 0 rgba(0,0,0,0.14);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 2.2rem;
+    }
+    .service-card {
+      background: #eaeafc;
+      border-radius: 1.4rem;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0px 5px 20px 0 rgba(0,0,0,0.06);
+      transition: box-shadow 0.2s;
+    }
+    .service-card:hover {
+      box-shadow: 0px 10px 30px 0 rgba(44, 62, 80, 0.18);
+    }
+    .service-icon i {
+      font-size: 2.2rem;
+      color: #6c63ff;
+      margin-bottom: .9rem;
+    }
+    .service-title {
+      font-size: 1.25rem;
+      color: #28283c;
+      margin-bottom: .7rem;
+    }
+    .service-description {
+      color: #44445a;
+    }
+    .portfolio-filter {
+      text-align: center;
+      margin-bottom: 2.1rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.3rem;
+      border-radius: 2rem;
+      border: none;
+      background: #eaeafc;
+      color: #564fd2;
+      font-size: 1rem;
+      margin: 0 0.35rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: #6c63ff;
+      color: #fff;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.6rem;
+      margin-bottom: 2rem;
+    }
+    .portfolio-item {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 3px 15px 0 rgba(0,0,0,0.10);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-6px) scale(1.02);
+    }
+    .portfolio-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .portfolio-details {
+      padding: 1.2rem 1rem;
+    }
+    .portfolio-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: .45rem;
+      color: #28283c;
+    }
+    .portfolio-description {
+      color: #555570;
+      font-size: 0.99rem;
+    }
+    .admin-controls {
+      text-align: center;
+    }
+    .admin-controls .btn {
+      margin-top: 1rem;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background-color: rgba(44, 57, 88, 0.10);
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: 7% auto;
+      padding: 2.5rem 2rem;
+      border-radius: 1.3rem;
+      width: 98%;
+      max-width: 400px;
+      position: relative;
+      box-shadow: 0 8px 24px 0 rgba(0,0,0,0.13);
+    }
+    .modal-content .close {
+      color: #28283c;
+      position: absolute;
+      right: 18px;
+      top: 16px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #project-form label {
+      color: #44445a;
+      font-weight: 500;
+    }
+    #project-form .form-group {
+      margin-bottom: 1rem;
+    }
+    #project-form input, #project-form select, #project-form textarea {
+      width: 100%;
+      border-radius: .45rem;
+      padding: 0.75rem;
+      border: 1px solid #dedede;
+      outline: none;
+      font-size: 1.05rem;
+      margin-top: .4rem;
+      transition: border 0.15s;
+    }
+    #project-form input:focus, #project-form select:focus, #project-form textarea:focus {
+      border: 1px solid #6c63ff;
+    }
+    .contact-content {
+      display: flex;
+      gap: 2.7rem;
+      justify-content: space-between;
+    }
+    .contact-info {
+      flex: 1.1;
+    }
+    .contact-item {
+      background: #eaeafc;
+      padding: 1.2rem 1.3rem;
+      border-radius: .87rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .contact-icon i {
+      color: #6c63ff;
+      font-size: 1.2rem;
+      margin-top: 5px;
+    }
+    .contact-details h4 {
+      margin-bottom: .17rem;
+      color: #332a84;
+      font-weight: 600;
+    }
+    .contact-form {
+      flex: 1.2;
+      background: #eaeafc;
+      padding: 1.7rem 2.1rem;
+      border-radius: 1rem;
+    }
+    .contact-form h3 {
+      margin-bottom: 1.2rem;
+      color: #28283c;
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+    #inquiry-form .form-group {
+      margin-bottom: 1rem;
+    }
+    #inquiry-form input, #inquiry-form select, #inquiry-form textarea {
+      width: 100%;
+      border-radius: .5rem;
+      padding: 0.85rem;
+      border: 1px solid #dedede;
+      outline: none;
+      font-size: 1.12rem;
+      margin-top: .4rem;
+      transition: border 0.15s;
+    }
+    #inquiry-form input:focus, #inquiry-form select:focus, #inquiry-form textarea:focus {
+      border: 1.1px solid #6c63ff;
+    }
+    .footer {
+      background: #564fd2;
+      color: #fff;
+      padding: 2rem 0 0 0;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 2rem;
+    }
+    .footer-section h3, .footer-section h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .footer-section ul {
+      list-style: none;
+    }
+    .footer-section ul li {
+      margin-bottom: .6rem;
+    }
+    .footer-section ul li a {
+      color: #fff;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-section ul li a:hover {
+      color: #a7acf7;
+    }
+    .social-links {
+      margin-top: 1rem;
+      display: flex;
+      gap: .85rem;
+    }
+    .social-link {
+      color: #fff;
+      font-size: 1.25rem;
+      transition: color 0.2s;
+    }
+    .social-link:hover {
+      color: #a7acf7;
+    }
+    .footer-bottom {
+      background: #332a84;
+      text-align: center;
+      padding: .8rem 0;
+      font-size: 1rem;
+      color: #fff;
+      margin-top: 2rem;
+      border-radius: 0 0 1.2rem 1.2rem;
+    }
+    @media (max-width: 900px) {
+      .about-content, .contact-content {
+        flex-direction: column;
+      }
+      .about-image { order: 2; }
+    }
+    @media (max-width: 650px) {
+      .navbar, .nav-container { padding: 0.45rem 1rem; }
+      .hero { flex-direction: column; text-align: center; }
+      .hero-image { padding: 2rem 0; }
+      .services, .about, .portfolio, .contact { padding: 3rem 1rem; }
+      .footer-content { padding: 0 1rem; }
+    }
+  </style>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init('YOUR_USER_ID'); // Replace with your EmailJS user ID
+    })();
+  </script>
+
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="nav-container">
+      <div class="nav-logo"><h2>Artnest Interiors</h2></div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
+        <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-toggle" id="mobile-menu" aria-controls="nav-menu" aria-expanded="false" role="button" tabindex="0" aria-label="Toggle navigation menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero" role="banner" aria-label="Hero Section">
+    <div class="hero-content">
+      <h1 class="hero-title">Transform Your Space Into Something Extraordinary</h1>
+      <p class="hero-subtitle">Professional Interior Design Services That Reflect Your Style and Personality</p>
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn btn-primary">View Our Work</a>
+        <a href="#contact" class="btn btn-secondary">Get Quote</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Beautiful Interior Design" id="hero-img" />
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about" role="region" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Us</h2>
+        <p class="section-subtitle">Creating Beautiful Spaces Since 2010</p>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <h3 id="about-heading">Passionate About Design Excellence</h3>
+          <p id="about-description">
+            With over a decade of experience in interior design, we specialize in creating<br />
+            spaces that are both functional and aesthetically pleasing. Our team of expert<br />
+            designers works closely with clients to understand their vision and bring it to life.<br /><br />
+            We believe that every space tells a story, and we're here to help you tell yours.<br />
+            From residential homes to commercial spaces, we handle projects of all sizes with<br />
+            the same attention to detail and commitment to excellence.
+          </p>
+          <div class="about-stats">
+            <div class="stat-item"><h4 id="projects-completed">500+</h4><p>Projects Completed</p></div>
+            <div class="stat-item"><h4 id="happy-clients">200+</h4><p>Happy Clients</p></div>
+            <div class="stat-item"><h4 id="years-experience">15+</h4><p>Years Experience</p></div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1460518451285-97b6aa326961?auto=format&fit=crop&w=800&q=80" alt="Our Design Studio" id="about-img" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services" role="region" aria-labelledby="services-label">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="services-label" class="section-title">Our Services</h2>
+        <p class="section-subtitle">Complete Interior Design Solutions</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card" role="article" aria-label="Residential Design">
+          <div class="service-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
+          <h3 class="service-title">Residential Design</h3>
+          <p class="service-description">Complete home makeovers, room redesigns, and space planning for residential properties.</p>
+        </article>
+        <article class="service-card" role="article" aria-label="Commercial Design">
+          <div class="service-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
+          <h3 class="service-title">Commercial Design</h3>
+          <p class="service-description">Office spaces, retail stores, restaurants, and other commercial interior design projects.</p>
+        </article>
+        <article class="service-card" role="article" aria-label="Color Consultation">
+          <div class="service-icon"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
+          <h3 class="service-title">Color Consultation</h3>
+          <p class="service-description">Expert color selection and palette creation to enhance your space's aesthetic appeal.</p>
+        </article>
+        <article class="service-card" role="article" aria-label="Furniture Selection">
+          <div class="service-icon"><i class="fas fa-couch" aria-hidden="true"></i></div>
+          <h3 class="service-title">Furniture Selection</h3>
+          <p class="service-description">Curated furniture pieces that perfectly complement your design style and space.</p>
+        </article>
+        <article class="service-card" role="article" aria-label="Lighting Design">
+          <div class="service-icon"><i class="fas fa-lightbulb" aria-hidden="true"></i></div>
+          <h3 class="service-title">Lighting Design</h3>
+          <p class="service-description">Strategic lighting solutions to create the perfect ambiance for any space.</p>
+        </article>
+        <article class="service-card" role="article" aria-label="Space Planning">
+          <div class="service-icon"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+          <h3 class="service-title">Space Planning</h3>
+          <p class="service-description">Optimal space utilization and layout planning for maximum functionality.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio" role="region" aria-labelledby="portfolio-title">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="portfolio-title" class="section-title">Our Portfolio</h2>
+        <p class="section-subtitle">Showcase of Our Best Work</p>
+      </div>
+      <div class="portfolio-filter" role="group" aria-label="Portfolio filter">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" data-filter="residential" aria-pressed="false">Residential</button>
+        <button class="filter-btn" data-filter="commercial" aria-pressed="false">Commercial</button>
+        <button class="filter-btn" data-filter="modern" aria-pressed="false">Modern</button>
+        <button class="filter-btn" data-filter="traditional" aria-pressed="false">Traditional</button>
+      </div>
+      <div class="portfolio-grid" id="portfolio-grid" role="list" aria-live="polite"></div>
+      <div class="admin-controls">
+        <button id="add-project-btn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="project-modal" aria-expanded="false">Add New Project</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact" role="region" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="section-header">
+        <h2 id="contact-title" class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's Discuss Your Dream Project</p>
+      </div>
+      <div class="contact-content">
+        <address class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-details">
+              <h4>Address</h4>
+              <p id="company-address" tabindex="0">Balaji residency, thakurli east, near SHREE CHAMUNDA GARDEN, Dombivli East, Thakurli, Dombivli, Maharashtra 421201</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+            <div class="contact-details">
+              <h4>Phone</h4>
+              <p id="company-phone" tabindex="0">+91 7506863602</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p id="company-email" tabindex="0">KunalC105@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
+            <div class="contact-details">
+              <h4>Working Hours</h4>
+              <p id="working-hours" tabindex="0">Monday - Sunday: 9:00 AM - 9:00 PM</p>
+            </div>
+          </div>
+        </address>
+        <div class="contact-form">
+          <h3>Send Us An Inquiry</h3>
+          <form id="inquiry-form" role="form" aria-label="Inquiry Form">
+            <div class="form-group">
+              <label for="client-name">Your Name</label>
+              <input type="text" id="client-name" name="name" placeholder="Your Name" required />
+            </div>
+            <div class="form-group">
+              <label for="client-email">Your Email</label>
+              <input type="email" id="client-email" name="email" placeholder="Your Email" required />
+            </div>
+            <div class="form-group">
+              <label for="client-phone">Your Phone Number</label>
+              <input type="tel" id="client-phone" name="phone" placeholder="Your Phone Number" required />
+            </div>
+            <div class="form-group">
+              <label for="inquiry-type">Inquiry Type</label>
+              <select id="inquiry-type" name="inquiryType" required>
+                <option value="">Select Inquiry Type</option>
+                <option value="residential">Residential Design</option>
+                <option value="commercial">Commercial Design</option>
+                <option value="consultation">Design Consultation</option>
+                <option value="renovation">Renovation Project</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="client-message">Tell us about your project...</label>
+              <textarea id="client-message" name="message" placeholder="Your message" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <section class="footer-section" aria-label="Company Info">
+          <h3>Artnest Interiors</h3>
+          <p>Transforming spaces, creating dreams. Your premier interior design partner for over a decade.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </section>
+        <section class="footer-section" aria-label="Quick Links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </section>
+        <section class="footer-section" aria-label="Services List">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#">Residential Design</a></li>
+            <li><a href="#">Commercial Design</a></li>
+            <li><a href="#">Space Planning</a></li>
+            <li><a href="#">Color Consultation</a></li>
+            <li><a href="#">Lighting Design</a></li>
+          </ul>
+        </section>
+        <section class="footer-section" aria-label="Contact Information">
+          <h4>Contact Info</h4>
+          <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Balaji residency, thakurli east, near SHREE CHAMUNDA GARDEN, Dombivli East, Thakurli, Dombivli, Maharashtra 421201</p>
+          <p><i class="fas fa-phone" aria-hidden="true"></i> +91 7506863602</p>
+          <p><i class="fas fa-envelope" aria-hidden="true"></i> KunalC105@gmail.com</p>
+        </section>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Artnest Interiors. All rights reserved. | Designed with ♥</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Admin Modal for Adding Projects -->
+  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" aria-label="Close dialog">&times;</button>
+      <h2 id="modal-title">Add New Project</h2>
+      <form id="project-form">
+        <div class="form-group">
+          <label for="project-title">Project Title</label>
+          <input type="text" id="project-title" name="title" required />
+        </div>
+        <div class="form-group">
+          <label for="project-category">Category</label>
+          <select id="project-category" name="category" required>
+            <option value="">Select Category</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
+            <option value="modern">Modern</option>
+            <option value="traditional">Traditional</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="project-image">Project Image URL</label>
+          <input type="url" id="project-image" name="image" required />
+        </div>
+        <div class="form-group">
+          <label for="project-description">Description</label>
+          <textarea id="project-description" name="description" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Project</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init('2_mpX9tlN4QCXtDOm'); // Replace with your EmailJS user ID
+    })();
+  </script>
+
+  <script>
+  // Responsive Navbar Toggle with accessibility support
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navMenu = document.getElementById('nav-menu');
+  if (mobileMenu) {
+    mobileMenu.addEventListener('click', () => {
+      let expanded = mobileMenu.getAttribute('aria-expanded') === 'true';
+      mobileMenu.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('active');
+    });
+    mobileMenu.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        mobileMenu.click();
+      }
+    });
+  }
+
+  // Portfolio data and rendering
+  let projects = JSON.parse(localStorage.getItem('projects')) || [
+    { title: 'Modern Living Room', category: 'residential modern', image: 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=800&q=80', description: 'A bright modern living room with custom furniture and accent lighting.' },
+    { title: 'Corporate Office', category: 'commercial modern', image: 'https://images.unsplash.com/photo-1503389152951-9c3d307ce761?auto=format&fit=crop&w=800&q=80', description: 'A dynamic open-plan corporate office with creative zones.' },
+    { title: 'Luxury Bedroom', category: 'residential traditional', image: 'https://images.unsplash.com/photo-1465101178521-c1a9136a2258?auto=format&fit=crop&w=800&q=80', description: 'A luxury traditional bedroom with elegant fabrics and classic details.' },
+    { title: 'Cafe Makeover', category: 'commercial traditional', image: 'https://images.unsplash.com/photo-1470509037663-253afd7f0f7f?auto=format&fit=crop&w=800&q=80', description: 'A charming vintage-theme cafe with unique wall art and furnishings.' },
+  ];
+
+  function saveProjects() {
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }
+
+  function createPortfolioItem(project) {
+    const el = document.createElement('div');
+    el.className = 'portfolio-item ' + project.category;
+    el.setAttribute('role', 'listitem');
+    el.setAttribute('tabindex', '0');
+    el.innerHTML = `
+        <img class="portfolio-img" src="${project.image}" alt="${project.title}" />
+        <div class="portfolio-details">
+            <h4 class="portfolio-title">${project.title}</h4>
+            <p class="portfolio-description">${project.description}</p>
+        </div>
+    `;
+    return el;
+  }
+
+  function renderPortfolio(filter = 'all') {
+    const grid = document.getElementById('portfolio-grid');
+    grid.innerHTML = '';
+    projects.filter(proj => filter==='all' ? true : proj.category.includes(filter)).forEach(proj => grid.appendChild(createPortfolioItem(proj)));
+  }
+
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  if (filterBtns.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const activeBtn = document.querySelector('.filter-btn.active');
+        if (activeBtn) {
+          activeBtn.classList.remove('active');
+          activeBtn.setAttribute('aria-pressed', 'false');
+        }
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        renderPortfolio(btn.dataset.filter);
+      });
+    });
+  }
+  renderPortfolio();
+
+  // Admin modal for adding projects
+  const addProjectBtn = document.getElementById('add-project-btn');
+  const projectModal = document.getElementById('project-modal');
+  const closeModal = document.querySelector('.modal .close');
+  const projectForm = document.getElementById('project-form');
+
+  if (addProjectBtn && projectModal && closeModal && projectForm) {
+    addProjectBtn.onclick = () => {
+      projectModal.style.display = 'block';
+      projectModal.setAttribute('aria-hidden', 'false');
+      projectForm.querySelector('input').focus();
+      addProjectBtn.setAttribute('aria-expanded', 'true');
+    };
+    closeModal.onclick = () => {
+      projectModal.style.display = 'none';
+      projectModal.setAttribute('aria-hidden', 'true');
+      addProjectBtn.setAttribute('aria-expanded', 'false');
+      addProjectBtn.focus();
+    };
+    window.onclick = e => {
+      if (e.target === projectModal) {
+        projectModal.style.display = 'none';
+        projectModal.setAttribute('aria-hidden', 'true');
+        addProjectBtn.setAttribute('aria-expanded', 'false');
+        addProjectBtn.focus();
+      }
+    };
+    projectForm.onsubmit = e => {
+      e.preventDefault();
+      const title = projectForm.title.value.trim();
+      const category = projectForm.category.value.trim();
+      const image = projectForm.image.value.trim();
+      const description = projectForm.description.value.trim();
+      if (title && category && image && description) {
+        projects.push({title, category, image, description});
+        saveProjects();
+        renderPortfolio();
+        projectModal.style.display = 'none';
+        projectModal.setAttribute('aria-hidden', 'true');
+        addProjectBtn.setAttribute('aria-expanded', 'false');
+        addProjectBtn.focus();
+        projectForm.reset();
+      }
+    };
+  }
+
+  // Inquiry form submission with EmailJS integration
+  const inquiryForm = document.getElementById('inquiry-form');
+  if (inquiryForm) {
+    inquiryForm.onsubmit = e => {
+      e.preventDefault();
+
+      const templateParams = {
+        from_name: inquiryForm['name'].value,
+        from_email: inquiryForm['email'].value,
+        phone: inquiryForm['phone'].value,
+        inquiry_type: inquiryForm['inquiryType'].value,
+        message: inquiryForm['message'].value,
+        to_email: 'KunalC105@gmail.com'
+      };
+
+      emailjs.send('service_cq8vqom', 'template_24afh5s', templateParams)
+        .then(response => {
+          alert('Thank you for your inquiry! We will contact you soon.');
+          inquiryForm.reset();
+        }, error => {
+          alert('Failed to send inquiry. Please try again.');
+          console.error('EmailJS error:', error);
+        });
+    };
+  }
+
+  // Editable text fields with localStorage persistence
+  [
+    'about-heading', 'about-description', 'projects-completed',
+    'happy-clients', 'years-experience', 'company-address',
+    'company-phone', 'company-email', 'working-hours'
+  ].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.setAttribute('tabindex', '0');
+      el.addEventListener('dblclick', () => {
+        const current = el.innerText;
+        const input = document.createElement('input');
+        input.value = current;
+        input.style.width = el.offsetWidth + 10 + 'px';
+        input.onblur = () => {
+          el.innerText = input.value;
+          localStorage.setItem(id, input.value);
+        };
+        input.onkeydown = e => { if (e.key === 'Enter') input.blur(); };
+        el.innerText = '';
+        el.append(input);
+        input.focus();
+      });
+      const saved = localStorage.getItem(id);
+      if (saved) el.innerText = saved;
+    }
+  });
+  </script>
+</body>
+</html>
